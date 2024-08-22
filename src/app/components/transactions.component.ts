@@ -1,12 +1,15 @@
-import { DatePipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { DatePipe, AsyncPipe, NgIf } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
-import { TransactionService } from '../services/transaction.service';
 import { Transaction } from '../types/transaction.type';
 import { AddTransactionComponent } from './add-transaction.component';
+import { map, Observable, of } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { selectTransactions } from '../store/selectors';
+import { transactionActions } from '../store/actions';
 
 @Component({
   selector: 'app-transactions',
@@ -18,8 +21,12 @@ import { AddTransactionComponent } from './add-transaction.component';
       <button mat-raised-button (click)="openDialog('income')">
         Add Income
       </button>
-      <table mat-table [dataSource]="transactions" class="mat-elevation-z8">
-        <!-- Decription Column -->
+      <table
+        [dataSource]="transactions$" 
+        mat-table
+        class="mat-elevation-z8"
+      >
+        <!-- Description Column -->
         <ng-container matColumnDef="description">
           <th mat-header-cell *matHeaderCellDef>Description</th>
           <td mat-cell *matCellDef="let transaction">
@@ -35,7 +42,7 @@ import { AddTransactionComponent } from './add-transaction.component';
           </td>
         </ng-container>
 
-        <!-- Weight Column -->
+        <!-- Date Column -->
         <ng-container matColumnDef="date">
           <th mat-header-cell *matHeaderCellDef>Date</th>
           <td mat-cell *matCellDef="let transaction">
@@ -63,18 +70,26 @@ import { AddTransactionComponent } from './add-transaction.component';
     }
   `,
   standalone: true,
-  imports: [MatTableModule, DatePipe, MatCardModule, MatButtonModule],
+  imports: [
+    MatTableModule,
+    DatePipe,
+    MatCardModule,
+    MatButtonModule,
+    AsyncPipe,
+    NgIf,
+  ],
 })
-export class TransactionsComponent {
-  private readonly transactionService = inject(TransactionService);
+export class TransactionsComponent implements OnInit {
   private readonly dialog = inject(MatDialog);
-  transactions: Transaction[] = [];
+  private readonly store = inject(Store);
+
+  transactions$: Observable<Transaction[]> = this.store.select(
+    selectTransactions.selectTransactionsState
+  );
   displayedColumns: string[] = ['description', 'amount', 'date', 'category'];
 
-  constructor() {
-    this.transactionService
-      .loadTransactions()
-      .subscribe((transactions) => (this.transactions = transactions));
+  ngOnInit() {
+    this.store.dispatch(transactionActions.loadTransactions());
   }
 
   openDialog(type: 'expense' | 'income') {
@@ -85,9 +100,7 @@ export class TransactionsComponent {
     });
 
     dialogRef.componentInstance.added.subscribe(() => {
-      this.transactionService
-        .loadTransactions()
-        .subscribe((transactions) => (this.transactions = transactions));
+      this.store.dispatch(transactionActions.loadTransactions());
       dialogRef.close();
     });
   }
