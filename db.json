@@ -55,6 +55,83 @@
       "description": "Wash Car",
       "amount": -5,
       "category": "Car"
+    },
+    {
+      "id": "0.23362112676763158",
+      "date": "2024-08-18T18:13:25.226Z",
+      "description": "asdflkjas",
+      "amount": -25,
+      "category": "sadfsadf"
+    },
+    {
+      "id": "0.7272252406677369",
+      "date": "2024-08-18T18:13:42.002Z",
+      "description": "safsafd",
+      "amount": 4,
+      "category": "sdafasfsa"
+    },
+    {
+      "id": "0.52281878959528",
+      "date": "2024-08-19T10:01:45.713Z",
+      "description": "Unbelivable",
+      "amount": -10,
+      "category": "unkwnown"
+    },
+    {
+      "id": "0.5392972742431508",
+      "date": "2024-08-19T10:02:36.855Z",
+      "description": "fdsasfda",
+      "amount": 44,
+      "category": ""
+    },
+    {
+      "id": "0.4508202656595739",
+      "date": "2024-08-19T10:02:41.155Z",
+      "description": "sdafa",
+      "amount": 432432,
+      "category": "sadfsadf"
+    },
+    {
+      "id": "0.17751860362319216",
+      "date": "2024-08-21T07:31:07.411Z",
+      "description": "dafasf",
+      "amount": -2525,
+      "category": "dfsadfs"
+    },
+    {
+      "id": "0.14363107974543143",
+      "date": "2024-08-21T07:31:35.140Z",
+      "description": "sfasfdsa",
+      "amount": 5252,
+      "category": "dfasfdasf"
+    },
+    {
+      "id": "0.32141870992917676",
+      "date": "2024-08-21T16:31:50.320Z",
+      "description": "dsfsaf",
+      "amount": 3,
+      "category": "safdasf"
+    },
+    {
+      "id": "0.2835316187895587",
+      "date": "2024-08-21T16:32:27.738Z",
+      "description": "aaaaaaa",
+      "amount": -1151,
+      "category": "bbbbbb"
+    },
+    {
+      "id": "0.08761215800806554",
+      "date": "2024-08-21T16:32:57.563Z",
+      "description": "aaaaaaaaaaaaa",
+      "amount": 11111,
+      "category": "cccccccccccccccccc"
+    },
+    {
+      "id": "0.3805324135227732",
+      "date": "2024-08-21T16:33:42.645Z",
+      "description": "uuuuuuuuuuuuu",
+      "amount": 99999,
+      "category": "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
     }
   ]
 }
